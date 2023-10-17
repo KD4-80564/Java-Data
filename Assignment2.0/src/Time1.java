@@ -1,67 +1,73 @@
-import java.util.Scanner;
+import java.sql.Date;
 
-/*Q3. Create a class called Date that includes three fields—a month (type int), a day (type int) and a
-year (type int). Provide a constructor that initializes the three instance variables and assumes that
-the values provided are correct. Provide a set and a get method for each instance
-variable. Provide a method displayDate that displays the month, day and year separated by forward
-slashes (/). Write a test application named DateTest that demonstrates class Date’s capabilities.*/
-public class Time1
-{
-	Scanner sc=new Scanner(System.in);
-int day;
-int month;
-int year;
-public Time1()
-{
-	this.day=0;
-	this.month=0;
-	this.year=0;
+class Box<T> {
+	private T obj;
+	public void set(T val) {
+		this.obj = val;
+	}
+	public T get() {
+		return this.obj;
+	}	
 }
-public Time1(int day,int month,int year)
-{
-	this.day=day;
-	this.month=month;
-	this.year=year;
-}
-public int getDay()
-{
-	return this.day;
-}
-void setday(int day)
-{
-	this.day=day;
-}
-public int getmonth()
-{
-	return this.day;
-}
-void setmonth(int month)
-{
-	this.month=month;
-}
-public int getyear()
-{
-	return this.year;
-}
-void setyear(int year)
-{
-	this.year=year;
-}
-void acceptTime()
-{
-	System.out.println("Day:"+this.day+"Month:"+this.month+"Enter Year"+this.year);
-	day=sc.nextInt();
+
+public class Time1 {
+	public static void printAnyBox(Box<?> b) {
+		System.out.println("Any Box: " + b.get());
+	}
 	
-	month=sc.nextInt();
+	public static void printSubNumberBox(Box<? extends Number> b) {
+		System.out.println("Number (or Sub-Class) Box: " + b.get());
+	}
 	
-	year=sc.nextInt();
-}
-void displayTime()
-{
+	public static void printSuperNumberBox(Box<? super Number> b) {
+		System.out.println("Number (or Super) Box: " + b.get());
+	}
+
+	public static void main(String[] args) {
+	    Box<Number> b1 = new Box<>(); 
+	    b1.set(1234L);
+	    Box<Boolean> b2 = new Box<>();
+	    b2.set(true);
+	    Box<Character> b3 = new Box<>();
+	    b3.set('A');
+	    Box<String> b4 = new Box<>();
+	    b4.set("Sunbeam");
+	    Box<Integer> b5 = new Box<>();
+	    b5.set(1);
+	    Box<Double> b6 = new Box<>();
+	    b6.set(3.14);
+	    Box<Date> b7 = new Box<>();
+	    b7.set(new Date(0));
+	    Box<Object> b8 = new Box<>();
+	    b8.set(new Object());
+	    
+	    printAnyBox(b1);
+	    printAnyBox(b2);
+	    printAnyBox(b3);
+	    printAnyBox(b4);
+	    printAnyBox(b5);
+	    printAnyBox(b6);
+	    printAnyBox(b7);
+	    printAnyBox(b8);
+	    
+	    printSubNumberBox(b1);
+	//    printSubNumberBox(b2); // error
+	//    printSubNumberBox(b3); // error
+	//    printSubNumberBox(b4); // error
+	    printSubNumberBox(b5);
+	    printSubNumberBox(b6);
+	//    printSubNumberBox(b7); // error
+	//    printSubNumberBox(b8); // error
+
 	
-	System.out.println(this.day+"/"+this.month+"/"+this.year);
+	    printSuperNumberBox(b1);
+	//    printSuperNumberBox(b2); // error
+	//    printSuperNumberBox(b3); // error
+	//    printSuperNumberBox(b4); // error
+	//    printSuperNumberBox(b5); // error
+	//    printSuperNumberBox(b6); // error
+	//    printSuperNumberBox(b7); // error
+	    printSuperNumberBox(b8);
+	}
 }
 
-
-
-}
