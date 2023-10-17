@@ -17,16 +17,20 @@ System.out.println("\nSize: " + arr.length);
 class StudentComparator implements Comparator<Student> {
 	@Override
 	public int compare(Student e1, Student e2) {
-		int diff = e1.getCity().compareTo(e2.getCity());
+		int diff = -e1.getCity().compareTo(e2.getCity());
 		if(diff == 0)
-		diff=Double.compare(e1.getMarks(),e2.getMarks());
+		diff=-Double.compare(e1.getMarks(),e2.getMarks());
 		if(diff ==0)
 	    diff = e1.getName().compareTo(e2.getName());
-		
 		return diff;
-	}
+	}}
+	StudentComparator comparator = new StudentComparator();
+	Arrays.sort(arr, comparator);
+	System.out.println("After Sort by marks Name and City: ");
+	for (Student e : arr)		
+		System.out.println(e);
 
-	
-}
-}
-}
+
+
+
+}}
