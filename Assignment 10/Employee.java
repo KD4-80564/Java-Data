@@ -110,7 +110,7 @@ public class Employee {
           {
                   if (em.getId() == findId) {
                       System.out.println("Employee found: " + em);
-                      break;
+                      
                   }
           }
      }
@@ -158,6 +158,6 @@ public class Employee {
       	 
      }
 }
-	 }while(choice==1);
+	 }while(choice!=6);
 	}//main
 }
